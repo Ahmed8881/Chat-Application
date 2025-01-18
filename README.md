@@ -41,9 +41,9 @@ This project is perfect for developers who want to build a **real-time chat appl
 
 ## Technologies Used
 
-- **Frontend**: Angular, TypeScript, HTML, Tailwind CSS
+- **Frontend**: Angular, TypeScript, HTML, Bootstrap
 - **Backend**: .NET Core Web API, SignalR
-- **Tools**: Visual Studio, Angular CLI, Postman
+- **Tools**: Visual Studio, Angular CLI
 
 ---
 

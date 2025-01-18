@@ -1,0 +1,39 @@
+# Ignore node_modules
+node_modules/
+
+# Ignore build output directories
+dist/
+out-tsc/
+bazel-out/
+bin/
+obj/
+
+# Ignore logs
+npm-debug.log
+yarn-error.log
+
+# Ignore IDE and editor files
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.vscode/
+.vs/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Angular cache
+.angular/cache
+
+# Ignore coverage reports
+coverage/
+
+# Ignore other miscellaneous files
+.sass-cache/
+connect.lock
+libpeerconnection.log
+testem.log
+typings/

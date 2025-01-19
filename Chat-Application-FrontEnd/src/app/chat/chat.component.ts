@@ -22,9 +22,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   roomName = sessionStorage.getItem("room");
 
   @ViewChild('scrollMe') private scrollContainer!: ElementRef;
-
+  @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
 
   ngOnInit(): void {
+    
     this.chatService.messages$.subscribe(res=>{
       this.messages = res;
       console.log(this.messages)
@@ -38,6 +39,15 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
+    this.scrollToBottom();
+  
+  }
+ 
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }
   }
 
   sendMessage(){

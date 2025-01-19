@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ChatService {
+export class ChatService implements OnInit {
 
   public connection : signalR.HubConnection = new signalR.HubConnectionBuilder()
   .withUrl("http://localhost:5000/chat")
@@ -18,6 +18,9 @@ export class ChatService {
   public users: string[] = [];
 
   constructor() {
+   
+   }
+  ngOnInit(): void {
     this.start();
     this.connection.on("ReceiveMessage", (user: string, message: string, messageTime: string)=>{
       this.messages = [...this.messages, {user, message, messageTime} ];
@@ -27,7 +30,7 @@ export class ChatService {
     this.connection.on("ConnectedUser", (users: any)=>{
       this.connectedUsers$.next(users);
     });
-   }
+  }
 
   //start connection
   public async start(){

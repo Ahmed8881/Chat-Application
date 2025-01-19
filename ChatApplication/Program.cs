@@ -13,9 +13,9 @@ builder.Services.AddSingleton<IDictionary<string, UserRoomConnection>>(IServiceP
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(builder =>
+    options.AddDefaultPolicy(policyBuilder =>
     {
-        builder.WithOrigins("http://localhost:4200")
+        policyBuilder.WithOrigins("http://localhost:4200")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
@@ -23,6 +23,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+app.UseCors(); // Ensure CORS is used before other middlewares
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -32,7 +33,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
-app.UseCors(); // Ensure CORS is used before other middlewares
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapHub<ChatHub>("/chat");

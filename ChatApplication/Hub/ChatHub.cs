@@ -15,7 +15,7 @@ namespace ChatApplication.Hub
             _connection[Context.ConnectionId] = userconnection;
 
             await Clients.Group(userconnection.Room!).SendAsync(method: "RecieveMessage", arg1: "Lets Program Bot", arg2: $"{userconnection.User} has joined the group");
-                
+                await SendConnetedUsers(userconnection.Room!);
 
         }
         public async Task SendMessage(string message){

@@ -27,5 +27,15 @@ namespace ChatApplication.Hub
             var users = _connection.Values.Where(u=>u.Room==room).Select(s=>s.User);
             return Clients.Group(room).SendAsync(method:"ConnectedUsers",users);
         }
+        public override Task OnDisconnectedAsync(Exception? exception)
+        {
+            if(!_connection.TryGetValue(Context.ConnectionId, out UserRoomConnection userRoomConnection)){
+                return base.OnDisconnectedAsync(exception);
+            }   
+            Clients.Group(userRoomConnection.Room!)
+                .SendAsync(method:"RecieveMessage",arg1:"Lets Program Bot",arg2:$"{userRoomConnection.User} has left the group");
+                SendConnetedUsers(userRoomConnection.Room!);
+                return base.OnDisconnectedAsync(exception);
+        }
     }
 }

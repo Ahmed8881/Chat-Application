@@ -9,7 +9,15 @@ public connection :signalR.HubConnection = new signalR.HubConnectionBuilder()
 .configureLogging(signalR.LogLevel.Information)
 .build();
   constructor() {
-    this.connection.on('ReceiveMessage',(user:string,message:string,messageTime:string)=>{)
+    this.connection.on('ReceiveMessage',(user:string,message:string,messageTime:string)=>{
+      console.log("User",user);
+      console.log("Message",message);
+      console.log("Time",messageTime);
+    });
+    this.connection.on('ConnectedUsers',(users:any)=>{
+      console.log("users",users);
+    });
+
    }
   //start connection
   public async startConnection(){

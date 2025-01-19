@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using System.Data;
 
 namespace ChatApplication.Hub
 {
@@ -14,7 +15,7 @@ namespace ChatApplication.Hub
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName:userconnection.Room!);
             _connection[Context.ConnectionId] = userconnection;
 
-            await Clients.Group(userconnection.Room!).SendAsync(method: "RecieveMessage", arg1: "Lets Program Bot", arg2: $"{userconnection.User} has joined the group");
+            await Clients.Group(userconnection.Room!).SendAsync(method: "RecieveMessage", arg1: "Lets Program Bot", arg2: $"{userconnection.User} has joined the group",arg3: DateTime.Now);
                 await SendConnetedUsers(userconnection.Room!);
 
         }
@@ -33,7 +34,7 @@ namespace ChatApplication.Hub
                 return base.OnDisconnectedAsync(exception);
             }   
             Clients.Group(userRoomConnection.Room!)
-                .SendAsync(method:"RecieveMessage",arg1:"Lets Program Bot",arg2:$"{userRoomConnection.User} has left the group");
+                .SendAsync(method:"RecieveMessage",arg1:"Lets Program Bot",arg2:$"{userRoomConnection.User} has left the group", arg3: DateTime.Now);
                 SendConnetedUsers(userRoomConnection.Room!);
                 return base.OnDisconnectedAsync(exception);
         }

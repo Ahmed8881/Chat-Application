@@ -23,5 +23,9 @@ namespace ChatApplication.Hub
                 await Clients.Group(userRoomConnection.Room!).SendAsync(method:"RecieveMessage",userRoomConnection.User,message, DateTime.Now);
             }
         }
+        public Task SendConnetedUsers(string room){
+            var users = _connection.Values.Where(u=>u.Room==room).Select(s=>s.User);
+            return Clients.Group(room).SendAsync(method:"ConnectedUsers",users);
+        }
     }
 }

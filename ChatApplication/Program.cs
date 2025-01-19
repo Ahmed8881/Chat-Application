@@ -22,7 +22,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapHub<ChatHub>(pattern:"/chat");

@@ -1,19 +1,384 @@
-.btn-color{
-    background-color: #f44336;
-    color: white;
-}
-
-.profile-image-pic{
+.page-container {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    perspective: 1000px;
+  }
+  
+  .animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+      #0a192f 0%, 
+      #112240 25%, 
+      #1a365d 50%, 
+      #234876 75%, 
+      #2d5a8f 100%);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    z-index: -1;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 100%);
+    }
+  }
+  
+  .particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at center, #ffffff 1px, transparent 1px),
+      radial-gradient(circle at center, #ffffff 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
+    animation: particleMove 20s linear infinite;
+    opacity: 0.1;
+  }
+  
+  .floating-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .shape {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    animation: floatShape 20s infinite linear;
+  }
+  
+  .shape1 {
     width: 200px;
     height: 200px;
-    object-fit: cover;
-
-}
-.cardbody-color{
-    background-color: #f44336;
-    background-image: linear-gradient(315deg, #f44336 0%, #2196f3 74%);
-}
-
-a {
-    text-decoration: none;
-}
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+  
+  .shape2 {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    right: 15%;
+    animation-delay: -5s;
+  }
+  
+  .shape3 {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: -10s;
+  }
+  
+  .shape4 {
+    width: 180px;
+    height: 180px;
+    top: 30%;
+    right: 30%;
+    animation-delay: -15s;
+  }
+  
+  @keyframes floatShape {
+    0% {
+      transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) rotate(120deg) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) rotate(240deg) scale(0.9);
+    }
+    100% {
+      transform: translate(0, 0) rotate(360deg) scale(1);
+    }
+  }
+  
+  @keyframes particleMove {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50px);
+    }
+  }
+  
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .container {
+    padding: 2rem;
+    transform-style: preserve-3d;
+  }
+  
+  .content-wrapper {
+    padding: 2rem 0;
+  }
+  
+  .title-container {
+    text-align: center;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  .title {
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: titleGlow 2s ease-in-out infinite alternate;
+  }
+  
+  .title-underline {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #64ffda, #00bcd4);
+    margin: 0 auto;
+    border-radius: 2px;
+    animation: underlineWidth 3s ease-in-out infinite;
+  }
+  
+  @keyframes titleGlow {
+    from {
+      text-shadow: 0 0 10px rgba(100, 255, 218, 0.5),
+                   0 0 20px rgba(100, 255, 218, 0.3),
+                   0 0 30px rgba(100, 255, 218, 0.1);
+    }
+    to {
+      text-shadow: 0 0 20px rgba(100, 255, 218, 0.8),
+                   0 0 30px rgba(100, 255, 218, 0.5),
+                   0 0 40px rgba(100, 255, 218, 0.3);
+    }
+  }
+  
+  @keyframes underlineWidth {
+    0%, 100% { width: 100px; }
+    50% { width: 200px; }
+  }
+  
+  .subtitle {
+    color: #a8b2d1;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    animation: subtitleFade 3s ease-in-out infinite;
+  }
+  
+  @keyframes subtitleFade {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+  
+  .card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    
+    &:hover {
+      transform: translateY(-5px) rotateX(5deg);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      border-color: rgba(100, 255, 218, 0.3);
+    }
+  }
+  
+  .card-inner {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .profile-image-container {
+    text-align: center;
+    margin-bottom: 2rem;
+    perspective: 1000px;
+  }
+  
+  .profile-image-wrapper {
+    position: relative;
+    display: inline-block;
+    transform-style: preserve-3d;
+  }
+  
+  .profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #ffffff;
+    padding: 5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    
+    &:hover {
+      transform: scale(1.05) rotateY(10deg);
+      box-shadow: 0 8px 25px rgba(100, 255, 218, 0.4);
+    }
+  }
+  
+  .profile-glow {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, 
+      rgba(100, 255, 218, 0.2) 0%,
+      transparent 70%);
+    animation: glowPulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes glowPulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-wrapper {
+    position: relative;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+    
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    &:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.3);
+    }
+  }
+  
+  .input-glow {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: radial-gradient(circle at center, 
+      rgba(100, 255, 218, 0.2) 0%,
+      transparent 70%);
+    border-radius: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
+  
+  .form-input:focus + .input-glow {
+    opacity: 1;
+    animation: inputGlow 2s ease-in-out infinite;
+  }
+  
+  @keyframes inputGlow {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.02); opacity: 0.8; }
+  }
+  
+  .join-button {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #64ffda, #00bcd4);
+    color: #0a192f;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    
+    &:hover:not(:disabled) {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 5px 15px rgba(100, 255, 218, 0.4);
+      
+      .button-glow {
+        opacity: 1;
+      }
+    }
+    
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+  
+  .button-text {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .button-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, 
+      rgba(255, 255, 255, 0.8) 0%,
+      transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: buttonGlow 3s ease-in-out infinite;
+  }
+  
+  @keyframes buttonGlow {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.2); }
+  }
+  
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2rem;
+    }
+    
+    .card {
+      padding: 1.5rem;
+    }
+    
+    .profile-image {
+      width: 120px;
+      height: 120px;
+    }
+  }

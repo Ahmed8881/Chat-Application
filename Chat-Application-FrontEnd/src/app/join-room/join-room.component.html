@@ -1,25 +1,45 @@
-<div class ="container">
-    <div class ="row">
-    
-        <div class = "col-md-6 offset-md-3">
-            <h2 class = "text-center text-dark mt-5">Welcome to ChatHub</h2>
-            <div class= "text-center mb-5 text-dark">Please Join the Room to start Chatting</div>
-            <div class = "card my-5">
-                <form  [formGroup]="joinRoomForm" class = "card-body cardbody-color p-lg-5">
-                    <div class ="text-center">
-                        <img src ="" class = "img-fluid profile-image-pic img-thumbnail rounded-circle my-3" width="200px" alt ="profile">
-                    </div>
-                    <div class = "mb-3">
-                        <input  formControlName="user" type="text" class ="form-control" id= "displayname" aria-describedby="emailHelp" placeholder="Display Name">
-                    </div>
-                    <div class = "mb-3" >
-                        <input formControlName="room" type="text" class ="form-control" id = "roomname" placeholder = "Room Name">
-        
-                    </div>
-                    <div class ="text-center">
-                        <button [disabled]="joinRoomForm.invalid" (click)="joinRoom()" type="submit" class ="btn btn-color px-5 mb-5 w-100">Join</button></div>
-                </form>
+<div class="page-container">
+    <div class="animated-background"></div>
+    <div class="container" @fadeInOut>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="content-wrapper">
+            <h2 class="title">Welcome to ChatHub</h2>
+            <p class="subtitle">Please Join the Room to start Chatting</p>
+            
+            <div class="card">
+              <form [formGroup]="joinRoomForm" class="card-body">
+                <div class="profile-image-container">
+                    <img
+                      class="profile-image" 
+                    src="https://api.dicebear.com/9.x/lorelei/svg?seed=Destiny"
+                    alt="avatar" />
+                </div>
+                
+                <div class="form-group">
+                  <input formControlName="user" 
+                         type="text" 
+                         class="form-input" 
+                         placeholder="Display Name">
+                </div>
+                
+                <div class="form-group">
+                  <input formControlName="room" 
+                         type="text" 
+                         class="form-input" 
+                         placeholder="Room Name">
+                </div>
+                
+                <button [disabled]="joinRoomForm.invalid" 
+                        (click)="joinRoom()" 
+                        [@pulse]="buttonState"
+                        class="join-button">
+                  Join Room
+                </button>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>

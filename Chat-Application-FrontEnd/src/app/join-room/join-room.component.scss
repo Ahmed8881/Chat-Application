@@ -382,3 +382,38 @@
       height: 120px;
     }
   }
+  // Define keyframes for fadeInOut animation
+@keyframes fadeInOut-enter {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  // Define keyframes for pulse animation
+  @keyframes pulse-normal {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.05);
+    }
+  }
+  
+  // Apply fadeInOut animation
+  .fadeInOut-enter {
+    animation: fadeInOut-enter 0.4s ease-out forwards;
+  }
+  
+  // Apply pulse animation
+  .pulse-normal {
+    animation: pulse-normal 0.2s ease-in-out forwards;
+  }
+  
+  .pulse-pulsing {
+    animation: pulse-normal 0.2s ease-in-out forwards;
+  }

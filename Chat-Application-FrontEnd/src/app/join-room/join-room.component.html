@@ -1,45 +1,44 @@
 <div class="page-container">
-    <div class="animated-background"></div>
-    <div class="container" @fadeInOut>
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <div class="content-wrapper">
-            <h2 class="title">Welcome to ChatHub</h2>
-            <p class="subtitle">Please Join the Room to start Chatting</p>
-            
-            <div class="card">
-              <form [formGroup]="joinRoomForm" class="card-body">
-                <div class="profile-image-container">
-                    <img
-                      class="profile-image" 
-                    src="https://api.dicebear.com/9.x/lorelei/svg?seed=Destiny"
-                    alt="avatar" />
-                </div>
-                
-                <div class="form-group">
-                  <input formControlName="user" 
-                         type="text" 
-                         class="form-input" 
-                         placeholder="Display Name">
-                </div>
-                
-                <div class="form-group">
-                  <input formControlName="room" 
-                         type="text" 
-                         class="form-input" 
-                         placeholder="Room Name">
-                </div>
-                
-                <button [disabled]="joinRoomForm.invalid" 
-                        (click)="joinRoom()" 
-                        [@pulse]="buttonState"
-                        class="join-button">
-                  Join Room
-                </button>
-              </form>
-            </div>
+  <div class="animated-background"></div>
+  <div class="container fadeInOut-enter">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="content-wrapper">
+          <h2 class="title">Welcome to ChatHub</h2>
+          <p class="subtitle">Please Join the Room to start Chatting</p>
+          
+          <div class="card">
+            <form [formGroup]="joinRoomForm" class="card-body">
+              <div class="profile-image-container">
+                <img
+                  class="profile-image" 
+                  src="https://api.dicebear.com/9.x/lorelei/svg?seed=Destiny"
+                  alt="avatar" />
+              </div>
+              
+              <div class="form-group">
+                <input formControlName="user" 
+                       type="text" 
+                       class="form-input" 
+                       placeholder="Display Name">
+              </div>
+              
+              <div class="form-group">
+                <input formControlName="room" 
+                       type="text" 
+                       class="form-input" 
+                       placeholder="Room Name">
+              </div>
+              
+              <button [disabled]="joinRoomForm.invalid" 
+                      (click)="joinRoom()" 
+                      class="join-button pulse-normal">
+                Join Room
+              </button>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

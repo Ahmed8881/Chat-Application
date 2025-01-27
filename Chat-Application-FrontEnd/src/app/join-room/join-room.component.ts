@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ChatService } from '../chat.service';
 import{ReactiveFormsModule } from '@angular/forms';
 
+
 @Component({
   selector: 'app-join-room',
   standalone: true,
@@ -13,13 +14,20 @@ import{ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./join-room.component.scss']
 })
 export class JoinRoomComponent implements OnInit {
+constructor(
+  private fb: FormBuilder,
+  private router: Router,
+  private _chatService: ChatService
+) {
+
+}
+
 
   joinRoomForm!: FormGroup;
-  fb = inject(FormBuilder);
-  router = inject(Router);
-  chatService = inject(ChatService);
+
 
   ngOnInit(): void {
+
     this.joinRoomForm = this.fb.group({
       user: ['', Validators.required],
       room: ['', Validators.required]
@@ -27,15 +35,17 @@ export class JoinRoomComponent implements OnInit {
   }
 
   joinRoom(){
+    debugger;
     const {user, room} = this.joinRoomForm.value;
     sessionStorage.setItem("user", user);
     sessionStorage.setItem("room", room);
-    this.chatService.joinRoom(user, room)
+    this._chatService.joinRoom(user, room)
     .then(()=>{
-      this.router.navigate(['chat']);
-    }).catch((err)=>{
-      console.log(err);
-    })
+
+  }).catch((err)=>{
+    console.log(err);
+  })
+  this.router.navigate(['chat']);
 
   }
 

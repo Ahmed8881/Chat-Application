@@ -30,8 +30,19 @@ export class ChatService implements OnInit {
     this.connection.on("ConnectedUser", (users: any)=>{
       this.connectedUsers$.next(users);
     });
-  }
 
+  }
+public callit(){
+      this.start();
+      this.connection.on("ReceiveMessage", (user: string, message: string, messageTime: string)=>{
+        this.messages = [...this.messages, {user, message, messageTime} ];
+        this.messages$.next(this.messages);
+      });
+  
+      this.connection.on("ConnectedUser", (users: any)=>{
+        this.connectedUsers$.next(users);
+      });
+}
   //start connection
   public async start(){
     try {
